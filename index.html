@@ -21,8 +21,7 @@
       position: relative;
       overflow-x: hidden;
     }
-
-    /* Background images: flowers + cross (you will upload them to same repo) */
+    /* Background images: flowers + cross (you uploaded them to same repo) */
     body::before,
     body::after {
       content: "";
@@ -34,23 +33,33 @@
       z-index: -3;
       filter: blur(1px);
     }
+
     /* Main flowers image */
     body::before {
-      background-image: url("spring-flowers-65de4a13478ee.jpg");
+      background-image: url("spring-flowers-65de4a13478ee.avif");
     }
-    /* Overlay: extra flowers + sky cross blended */
+
+    /* Overlay: extra flowers blended */
     body::after {
       background-image:
         linear-gradient(to bottom, rgba(255,255,255,0.85), rgba(255,255,255,0.9)),
-        url("Beautiful-Flowers.jpg.jpg");
-      mix-blend-mode: soft-light;
+        url("Beautiful-Flowers.jpg.webp");
     }
 
-    /* Soft panel overlay so text stays readable */
-    .overlay {
-      min-height: 100vh;
-      background: radial-gradient(circle at top, rgba(255,255,255,0.9), rgba(255,255,255,0.95));
-    }
+    /* Flowers behind the details card */
+    .details::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.9)),
+        url("images.jpeg");
+      background-size: cover;
+      background-position: center;
+      opacity: 0.38;
+      z-index: -2;
+      filter: blur(0.3px);
+    }  
 
     .page-wrap {
       max-width: 980px;
