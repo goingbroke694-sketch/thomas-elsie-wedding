@@ -4,52 +4,92 @@
   <meta charset="UTF-8">
   <title>Thomas & Elsie Bobadilla - Wedding</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google Font for fancy script + clean text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       min-height: 100vh;
       color: #2b2835;
-      background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.8), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(255,255,255,0.9), transparent 55%),
-        linear-gradient(135deg, #f6e9ff, #ffe3ec, #fdf5db);
+      font-family: "Playfair Display", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", serif;
+      background: #fdf6ff;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Background images: flowers + cross (you will upload them to same repo) */
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0.22;
+      z-index: -3;
+      filter: blur(1px);
+    }
+    /* Main flowers image */
+    body::before {
+      background-image: url("spring-flowers-65de4a13478ee.jpg");
+    }
+    /* Overlay: extra flowers + sky cross blended */
+    body::after {
+      background-image:
+        linear-gradient(to bottom, rgba(255,255,255,0.85), rgba(255,255,255,0.9)),
+        url("Beautiful-Flowers.jpg.jpg");
+      mix-blend-mode: soft-light;
+    }
+
+    /* Soft panel overlay so text stays readable */
+    .overlay {
+      min-height: 100vh;
+      background: radial-gradient(circle at top, rgba(255,255,255,0.9), rgba(255,255,255,0.95));
     }
 
     .page-wrap {
-      max-width: 900px;
+      max-width: 980px;
       margin: 0 auto;
-      padding: 2.5rem 1.5rem 2rem;
+      padding: 2.8rem 1.5rem 2.2rem;
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 2.1rem;
     }
 
     header {
       text-align: center;
     }
     header h1 {
-      font-size: 2.4rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      font-family: "Great Vibes", cursive;
+      font-size: 3.1rem;
+      color: #7b4064;
     }
     header h1 span {
       display: block;
-      font-size: 1.3rem;
-      margin-top: 0.5rem;
+      margin-top: 0.3rem;
+      font-family: "Playfair Display", serif;
+      font-size: 1.25rem;
       letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #5a4a63;
     }
     header p {
       margin-top: 1rem;
-      font-size: 0.98rem;
+      font-size: 1rem;
+      letter-spacing: 0.03em;
     }
 
     .content {
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-      gap: 1.6rem;
+      gap: 1.8rem;
     }
-    @media (max-width: 720px) {
+    @media (max-width: 760px) {
       .content {
         grid-template-columns: 1fr;
       }
@@ -58,95 +98,99 @@
     .card {
       background: #ffffffee;
       border-radius: 1.4rem;
-      box-shadow: 0 14px 30px rgba(0,0,0,0.08);
-      padding: 1.8rem 1.6rem 2.1rem;
-    }
-
-    .details {
-      text-align: center;
+      box-shadow: 0 14px 32px rgba(0,0,0,0.12);
+      padding: 1.9rem 1.7rem 2.1rem;
       position: relative;
       overflow: hidden;
+      backdrop-filter: blur(3px);
     }
 
-    /* Decorative background for details card */
+    /* Wedding details card with cross + soft flowers */
+    .details {
+      text-align: center;
+    }
+
     .details::before {
       content: "";
       position: absolute;
       inset: 0;
-      background:
-        radial-gradient(circle at 15% 10%, #ffffffaa 0, transparent 60%),
-        radial-gradient(circle at 85% 90%, #fff9f3dd 0, transparent 60%),
-        linear-gradient(160deg, #f9e0ff, #ffe5ed, #fdf2cf);
-      opacity: 0.85;
+      background-image:
+        linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.9)),
+        url("images.jpg");
+      background-size: cover;
+      background-position: center;
+      opacity: 0.38;
       z-index: -2;
+      filter: blur(0.3px);
     }
 
-    /* Elegant cross in the background */
     .cross {
       position: absolute;
-      top: 18%;
+      top: 12%;
       left: 50%;
       transform: translateX(-50%);
-      width: 80px;
-      height: 110px;
-      opacity: 0.18;
+      width: 90px;
+      height: 130px;
+      opacity: 0.4;
       z-index: -1;
     }
     .cross::before,
     .cross::after {
       content: "";
       position: absolute;
-      background: linear-gradient(180deg, #b88c5a, #f7e3b8);
+      background: linear-gradient(180deg, #b5835a, #f7e2b6);
       border-radius: 999px;
-      box-shadow: 0 6px 12px rgba(184,140,90,0.35);
+      box-shadow: 0 8px 18px rgba(181,120,60,0.5);
     }
     .cross::before {
-      width: 20px;
-      height: 110px;
+      width: 22px;
+      height: 130px;
       left: 50%;
       top: 0;
       transform: translateX(-50%);
     }
     .cross::after {
-      width: 80px;
-      height: 18px;
+      width: 90px;
+      height: 20px;
       left: 50%;
-      top: 36px;
+      top: 42px;
       transform: translateX(-50%);
     }
 
     .details h2 {
-      font-size: 1.5rem;
-      margin-bottom: 0.4rem;
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
     }
     .details p {
-      font-size: 0.98rem;
+      font-size: 1rem;
       margin-bottom: 0.4rem;
     }
     .details .line {
-      width: 60%;
-      max-width: 220px;
+      width: 65%;
+      max-width: 240px;
       height: 1px;
-      margin: 1.1rem auto 1rem;
-      background: linear-gradient(90deg, transparent, #d5b8ff, transparent);
+      margin: 1.2rem auto 1.1rem;
+      background: linear-gradient(90deg, transparent, #d59adf, transparent);
     }
 
     form label {
       display: block;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       margin-bottom: 0.35rem;
       font-weight: 600;
     }
-    form input, form select {
+    form input {
       width: 100%;
-      padding: 0.6rem 0.75rem;
+      padding: 0.6rem 0.8rem;
       border-radius: 0.6rem;
-      border: 1px solid #ddd;
+      border: 1px solid #d6cde3;
       font-size: 0.95rem;
-      margin-bottom: 0.95rem;
-      background: #fcfcff;
+      margin-bottom: 1rem;
+      background: rgba(252,252,255,0.9);
     }
-    form input:focus, form select:focus {
+    form input:focus {
       outline: none;
       border-color: #ff8fb4;
       box-shadow: 0 0 0 2px #ffd7e8;
@@ -154,15 +198,15 @@
 
     .radio-group {
       display: flex;
-      gap: 1.3rem;
-      margin-bottom: 1rem;
+      gap: 1.4rem;
+      margin-bottom: 1.1rem;
     }
     .radio-group label {
       font-weight: 400;
       display: flex;
       align-items: center;
       gap: 0.25rem;
-      font-size: 0.92rem;
+      font-size: 0.94rem;
     }
     .radio-group input {
       width: auto;
@@ -171,93 +215,98 @@
 
     button {
       width: 100%;
-      padding: 0.8rem;
+      padding: 0.85rem;
       border-radius: 999px;
       border: none;
       background: linear-gradient(135deg, #ff8fb4, #ffb86c);
       color: #fff;
       font-weight: 700;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       cursor: pointer;
-      font-size: 0.86rem;
+      font-size: 0.88rem;
       margin-top: 0.4rem;
+      font-family: "Playfair Display", serif;
     }
     button:hover {
-      filter: brightness(1.05);
+      filter: brightness(1.06);
     }
 
     .note {
       font-size: 0.8rem;
       text-align: center;
-      margin-top: 0.9rem;
-      color: #777;
+      margin-top: 0.95rem;
+      color: #7a7187;
     }
 
     footer {
       text-align: center;
-      font-size: 0.9rem;
-      padding-bottom: 1.5rem;
-      color: #5f5468;
-      font-weight: 600;
+      font-size: 1rem;
+      padding-bottom: 1.6rem;
+      color: #5f4a63;
     }
     footer span {
       display: inline-block;
-      padding: 0.3rem 1.1rem;
+      padding: 0.4rem 1.4rem;
       border-radius: 999px;
-      background: rgba(255,255,255,0.8);
-      box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+      background: rgba(255,255,255,0.9);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+      font-family: "Great Vibes", cursive;
+      font-size: 1.6rem;
+      color: #7b4064;
     }
   </style>
 </head>
 <body>
-  <div class="page-wrap">
-    <header>
-      <h1>Thomas &amp; Elsie Bobadilla
-        <span>Our Wedding Day</span>
-      </h1>
-      <p>Please RSVP to celebrate with us.</p>
-    </header>
+  <div class="overlay">
+    <div class="page-wrap">
+      <header>
+        <h1>Thomas &amp; Elsie Bobadilla
+          <span>Our Wedding Day</span>
+        </h1>
+        <p>Please RSVP to celebrate with us.</p>
+      </header>
 
-    <div class="content">
-      <!-- Left: Wedding details with aesthetic background + cross -->
-      <section class="card details">
-        <div class="cross" aria-hidden="true"></div>
-        <h2>Wedding Details</h2>
-        <div class="line"></div>
-        <p><strong>Date:</strong> April 18, 2026</p>
-        <p><strong>Time:</strong> 11:00 a.m.</p>
-        <p><strong>Location:</strong> Holy Family Church</p>
-      </section>
+      <div class="content">
+        <!-- Left: Wedding details with flowers + cross -->
+        <section class="card details">
+          <div class="cross" aria-hidden="true"></div>
+          <h2>Wedding Details</h2>
+          <div class="line"></div>
+          <p><strong>Date:</strong> April 18, 2026</p>
+          <p><strong>Time:</strong> 11:00 a.m.</p>
+          <p><strong>Location:</strong> Holy Family Church</p>
+        </section>
 
-      <!-- Right: RSVP form (Netlify Forms enabled) -->
-      <main class="card">
-        <form id="rsvpForm" name="wedding-rsvp" method="POST" data-netlify="true">
-          <input type="hidden" name="form-name" value="wedding-rsvp">
+        <!-- Right: RSVP form (Netlify Forms) -->
+        <main class="card">
+          <form id="rsvpForm" name="wedding-rsvp" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="wedding-rsvp">
 
-          <label for="guestName">Full name</label>
-          <input id="guestName" name="guestName" type="text" required>
+            <label for="guestName">Full name</label>
+            <input id="guestName" name="guestName" type="text" required>
 
-          <label>Will you be attending?</label>
-          <div class="radio-group">
-            <label><input type="radio" name="attendance" value="Yes" required> Yes</label>
-            <label><input type="radio" name="attendance" value="No" required> No</label>
-          </div>
+            <label>Will you be attending?</label>
+            <div class="radio-group">
+              <label><input type="radio" name="attendance" value="Yes" required> Yes</label>
+              <label><input type="radio" name="attendance" value="No" required> No</label>
+            </div>
 
-          <label for="guestCount">How many people (including you)?</label>
-          <input id="guestCount" name="guestCount" type="number" min="1" max="5" value="1" required>
+            <label for="guestCount">How many people (including you)?</label>
+            <input id="guestCount" name="guestCount" type="number" min="1" max="5" value="1" required>
 
-          <button type="submit">Submit RSVP</button>
-          <p class="note">
-            After you tap submit, your response will be sent to Thomas &amp; Elsie.
-          </p>
-        </form>
-      </main>
+            <button type="submit">Submit RSVP</button>
+            <p class="note">
+              Your response will be sent privately to Thomas &amp; Elsie.
+            </p>
+          </form>
+        </main>
+      </div>
+
+      <footer>
+        <span>With love, Thomas &amp; Elsie</span>
+      </footer>
     </div>
-
-    <footer>
-      <span>With love, Thomas &amp; Elsie</span>
-    </footer>
   </div>
 </body>
 </html>
