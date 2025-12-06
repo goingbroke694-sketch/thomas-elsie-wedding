@@ -8,184 +8,256 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: linear-gradient(135deg, #fef6ff, #ffe9f0);
-      color: #333;
-      line-height: 1.6;
+      min-height: 100vh;
+      color: #2b2835;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.8), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(255,255,255,0.9), transparent 55%),
+        linear-gradient(135deg, #f6e9ff, #ffe3ec, #fdf5db);
     }
+
+    .page-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
     header {
       text-align: center;
-      padding: 3rem 1rem 2rem;
     }
     header h1 {
       font-size: 2.4rem;
       letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
     header h1 span {
       display: block;
-      font-size: 1.4rem;
-      margin-top: 0.4rem;
-      letter-spacing: 0.2em;
+      font-size: 1.3rem;
+      margin-top: 0.5rem;
+      letter-spacing: 0.18em;
     }
     header p {
       margin-top: 1rem;
-      font-size: 0.95rem;
+      font-size: 0.98rem;
     }
+
+    .content {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 1.6rem;
+    }
+    @media (max-width: 720px) {
+      .content {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .card {
-      max-width: 640px;
-      margin: 0 auto 3rem;
-      background: #ffffffdd;
-      border-radius: 1.2rem;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-      padding: 2rem 1.7rem 2.4rem;
+      background: #ffffffee;
+      border-radius: 1.4rem;
+      box-shadow: 0 14px 30px rgba(0,0,0,0.08);
+      padding: 1.8rem 1.6rem 2.1rem;
     }
+
     .details {
       text-align: center;
-      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
     }
+
+    /* Decorative background for details card */
+    .details::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 15% 10%, #ffffffaa 0, transparent 60%),
+        radial-gradient(circle at 85% 90%, #fff9f3dd 0, transparent 60%),
+        linear-gradient(160deg, #f9e0ff, #ffe5ed, #fdf2cf);
+      opacity: 0.85;
+      z-index: -2;
+    }
+
+    /* Elegant cross in the background */
+    .cross {
+      position: absolute;
+      top: 18%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 110px;
+      opacity: 0.18;
+      z-index: -1;
+    }
+    .cross::before,
+    .cross::after {
+      content: "";
+      position: absolute;
+      background: linear-gradient(180deg, #b88c5a, #f7e3b8);
+      border-radius: 999px;
+      box-shadow: 0 6px 12px rgba(184,140,90,0.35);
+    }
+    .cross::before {
+      width: 20px;
+      height: 110px;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+    }
+    .cross::after {
+      width: 80px;
+      height: 18px;
+      left: 50%;
+      top: 36px;
+      transform: translateX(-50%);
+    }
+
     .details h2 {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       margin-bottom: 0.4rem;
     }
     .details p {
-      font-size: 0.95rem;
+      font-size: 0.98rem;
+      margin-bottom: 0.4rem;
     }
+    .details .line {
+      width: 60%;
+      max-width: 220px;
+      height: 1px;
+      margin: 1.1rem auto 1rem;
+      background: linear-gradient(90deg, transparent, #d5b8ff, transparent);
+    }
+
     form label {
       display: block;
       font-size: 0.9rem;
       margin-bottom: 0.35rem;
       font-weight: 600;
     }
-    form input, form select, form textarea {
+    form input, form select {
       width: 100%;
-      padding: 0.55rem 0.7rem;
-      border-radius: 0.5rem;
+      padding: 0.6rem 0.75rem;
+      border-radius: 0.6rem;
       border: 1px solid #ddd;
       font-size: 0.95rem;
-      margin-bottom: 0.9rem;
+      margin-bottom: 0.95rem;
+      background: #fcfcff;
     }
-    form input:focus, form select:focus, form textarea:focus {
+    form input:focus, form select:focus {
       outline: none;
-      border-color: #ff7aa8;
-      box-shadow: 0 0 0 2px #ffd3e3;
+      border-color: #ff8fb4;
+      box-shadow: 0 0 0 2px #ffd7e8;
     }
+
     .radio-group {
       display: flex;
-      gap: 1rem;
-      margin-bottom: 0.9rem;
+      gap: 1.3rem;
+      margin-bottom: 1rem;
     }
     .radio-group label {
       font-weight: 400;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.92rem;
     }
     .radio-group input {
       width: auto;
-      margin-right: 0.25rem;
+      margin: 0;
     }
+
     button {
       width: 100%;
-      padding: 0.75rem;
+      padding: 0.8rem;
       border-radius: 999px;
       border: none;
-      background: linear-gradient(135deg, #ff7aa8, #ffb86c);
+      background: linear-gradient(135deg, #ff8fb4, #ffb86c);
       color: #fff;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       cursor: pointer;
-      font-size: 0.85rem;
+      font-size: 0.86rem;
       margin-top: 0.4rem;
     }
     button:hover {
       filter: brightness(1.05);
     }
+
     .note {
       font-size: 0.8rem;
       text-align: center;
       margin-top: 0.9rem;
       color: #777;
     }
-    .message {
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      text-align: center;
-      display: none;
-    }
-    .message.success { color: #1b8c3b; }
-    .message.error { color: #b00020; }
+
     footer {
       text-align: center;
-      font-size: 0.78rem;
+      font-size: 0.9rem;
       padding-bottom: 1.5rem;
-      color: #777;
+      color: #5f5468;
+      font-weight: 600;
+    }
+    footer span {
+      display: inline-block;
+      padding: 0.3rem 1.1rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.8);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.06);
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Thomas &amp; Elsie Bobadilla
-      <span>Our Wedding Day</span>
-    </h1>
-    <p>Please RSVP below so we can celebrate with you.</p>
-  </header>
+  <div class="page-wrap">
+    <header>
+      <h1>Thomas &amp; Elsie Bobadilla
+        <span>Our Wedding Day</span>
+      </h1>
+      <p>Please RSVP to celebrate with us.</p>
+    </header>
 
-  <main class="card">
-    <section class="details">
-      <h2>Wedding Details</h2>
-      <p>Date: TBD • Time: TBD • Location: TBD</p>
-      <p>You can edit this text later with your real details.</p>
-    </section>
+    <div class="content">
+      <!-- Left: Wedding details with aesthetic background + cross -->
+      <section class="card details">
+        <div class="cross" aria-hidden="true"></div>
+        <h2>Wedding Details</h2>
+        <div class="line"></div>
+        <p><strong>Date:</strong> April 18, 2026</p>
+        <p><strong>Time:</strong> 11:00 a.m.</p>
+        <p><strong>Location:</strong> Holy Family Church</p>
+      </section>
 
-    <form id="rsvpForm">
-      <label for="guestName">Full name</label>
-      <input id="guestName" name="guestName" type="text" required>
+      <!-- Right: RSVP form (Netlify Forms enabled) -->
+      <main class="card">
+        <form id="rsvpForm" name="wedding-rsvp" method="POST" data-netlify="true">
+          <input type="hidden" name="form-name" value="wedding-rsvp">
 
-      <label>Will you be attending?</label>
-      <div class="radio-group">
-        <label><input type="radio" name="attendance" value="Yes" required> Yes</label>
-        <label><input type="radio" name="attendance" value="No" required> No</label>
-      </div>
+          <label for="guestName">Full name</label>
+          <input id="guestName" name="guestName" type="text" required>
 
-      <label for="guestCount">How many people (including you)?</label>
-      <input id="guestCount" name="guestCount" type="number" min="1" max="10" value="1">
+          <label>Will you be attending?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="attendance" value="Yes" required> Yes</label>
+            <label><input type="radio" name="attendance" value="No" required> No</label>
+          </div>
 
-      <label for="note">Anything we should know? (allergies, song requests, etc.)</label>
-      <textarea id="note" name="note" rows="3" placeholder="Optional"></textarea>
+          <label for="guestCount">How many people (including you)?</label>
+          <input id="guestCount" name="guestCount" type="number" min="1" max="5" value="1" required>
 
-      <button type="submit">Submit RSVP</button>
-      <p class="note">
-        After you tap submit, you’ll see a confirmation message.
-      </p>
-      <div id="formMessage" class="message"></div>
-    </form>
-  </main>
+          <button type="submit">Submit RSVP</button>
+          <p class="note">
+            After you tap submit, your response will be sent to Thomas &amp; Elsie.
+          </p>
+        </form>
+      </main>
+    </div>
 
-  <footer>
-    With love, Thomas &amp; Elsie
-  </footer>
-
-  <script>
-    // Basic front-end handling only:
-    const form = document.getElementById('rsvpForm');
-    const message = document.getElementById('formMessage');
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      const data = new FormData(form);
-      const name = data.get('guestName');
-      const attendance = data.get('attendance');
-      const count = data.get('guestCount');
-      const note = data.get('note');
-
-      // For now we just show a confirmation message.
-      // To truly save RSVPs, connect this form to a backend or form service.
-      message.classList.remove('error');
-      message.classList.add('success');
-      message.style.display = 'block';
-      message.textContent =
-        `Thank you, ${name}! Your RSVP (${attendance}, ${count} guests) has been recorded on this device.`;
-
-      form.reset();
-    });
-  </script>
+    <footer>
+      <span>With love, Thomas &amp; Elsie</span>
+    </footer>
+  </div>
 </body>
 </html>
