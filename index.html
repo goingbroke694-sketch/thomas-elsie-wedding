@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Thomas & Elsie Bobadilla - Wedding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #fef6ff, #ffe9f0);
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+    }
+    header h1 {
+      font-size: 2.4rem;
+      letter-spacing: 0.08em;
+    }
+    header h1 span {
+      display: block;
+      font-size: 1.4rem;
+      margin-top: 0.4rem;
+      letter-spacing: 0.2em;
+    }
+    header p {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+    }
+    .card {
+      max-width: 640px;
+      margin: 0 auto 3rem;
+      background: #ffffffdd;
+      border-radius: 1.2rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+      padding: 2rem 1.7rem 2.4rem;
+    }
+    .details {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .details h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.4rem;
+    }
+    .details p {
+      font-size: 0.95rem;
+    }
+    form label {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 0.35rem;
+      font-weight: 600;
+    }
+    form input, form select, form textarea {
+      width: 100%;
+      padding: 0.55rem 0.7rem;
+      border-radius: 0.5rem;
+      border: 1px solid #ddd;
+      font-size: 0.95rem;
+      margin-bottom: 0.9rem;
+    }
+    form input:focus, form select:focus, form textarea:focus {
+      outline: none;
+      border-color: #ff7aa8;
+      box-shadow: 0 0 0 2px #ffd3e3;
+    }
+    .radio-group {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 0.9rem;
+    }
+    .radio-group label {
+      font-weight: 400;
+    }
+    .radio-group input {
+      width: auto;
+      margin-right: 0.25rem;
+    }
+    button {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #ff7aa8, #ffb86c);
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-size: 0.85rem;
+      margin-top: 0.4rem;
+    }
+    button:hover {
+      filter: brightness(1.05);
+    }
+    .note {
+      font-size: 0.8rem;
+      text-align: center;
+      margin-top: 0.9rem;
+      color: #777;
+    }
+    .message {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      text-align: center;
+      display: none;
+    }
+    .message.success { color: #1b8c3b; }
+    .message.error { color: #b00020; }
+    footer {
+      text-align: center;
+      font-size: 0.78rem;
+      padding-bottom: 1.5rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Thomas &amp; Elsie Bobadilla
+      <span>Our Wedding Day</span>
+    </h1>
+    <p>Please RSVP below so we can celebrate with you.</p>
+  </header>
+
+  <main class="card">
+    <section class="details">
+      <h2>Wedding Details</h2>
+      <p>Date: TBD • Time: TBD • Location: TBD</p>
+      <p>You can edit this text later with your real details.</p>
+    </section>
+
+    <form id="rsvpForm">
+      <label for="guestName">Full name</label>
+      <input id="guestName" name="guestName" type="text" required>
+
+      <label>Will you be attending?</label>
+      <div class="radio-group">
+        <label><input type="radio" name="attendance" value="Yes" required> Yes</label>
+        <label><input type="radio" name="attendance" value="No" required> No</label>
+      </div>
+
+      <label for="guestCount">How many people (including you)?</label>
+      <input id="guestCount" name="guestCount" type="number" min="1" max="10" value="1">
+
+      <label for="note">Anything we should know? (allergies, song requests, etc.)</label>
+      <textarea id="note" name="note" rows="3" placeholder="Optional"></textarea>
+
+      <button type="submit">Submit RSVP</button>
+      <p class="note">
+        After you tap submit, you’ll see a confirmation message.
+      </p>
+      <div id="formMessage" class="message"></div>
+    </form>
+  </main>
+
+  <footer>
+    With love, Thomas &amp; Elsie
+  </footer>
+
+  <script>
+    // Basic front-end handling only:
+    const form = document.getElementById('rsvpForm');
+    const message = document.getElementById('formMessage');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const data = new FormData(form);
+      const name = data.get('guestName');
+      const attendance = data.get('attendance');
+      const count = data.get('guestCount');
+      const note = data.get('note');
+
+      // For now we just show a confirmation message.
+      // To truly save RSVPs, connect this form to a backend or form service.
+      message.classList.remove('error');
+      message.classList.add('success');
+      message.style.display = 'block';
+      message.textContent =
+        `Thank you, ${name}! Your RSVP (${attendance}, ${count} guests) has been recorded on this device.`;
+
+      form.reset();
+    });
+  </script>
+</body>
+</html>
